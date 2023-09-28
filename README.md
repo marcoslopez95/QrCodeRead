@@ -10,4 +10,4 @@
 3. ejecutar el comando `npx quasar dev`, se abrirá automaticamente el navegador y se podrá navegar entre las vistas.
 
 # Acotaciones
-El proyecto está basado en Quasar, un framework de Vue.
+El proyecto está basado en Quasar, un framework de Vue. Permite el desarrollo de una página web con posibilidad de compilado para apk.
