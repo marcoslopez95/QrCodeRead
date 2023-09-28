@@ -1,7 +1,7 @@
 <template>
   <q-layout view="lHh Lpr lFf">
     <q-header elevated>
-      <q-toolbar class="bg-blue-grey-10">
+      <q-toolbar class="bg-primary">
         <q-btn
           flat
           dense
@@ -26,13 +26,16 @@
       content-class="bg-grey-2"
     >
       <q-list>
-        <q-item-label header>Essential Links</q-item-label>
+        <q-item>
+          <q-img src="/qrLogo.jpg"></q-img>
+        </q-item>
+        <q-item-label header>Páginas</q-item-label>
         <q-item clickable to="/" exact>
           <q-item-section avatar>
             <q-icon name="camera_alt" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>Read QRCode</q-item-label>
+            <q-item-label>Lector código QR</q-item-label>
             <q-item-label caption></q-item-label>
           </q-item-section>
         </q-item>
@@ -41,37 +44,11 @@
             <q-icon name="select_all" />
           </q-item-section>
           <q-item-section>
-            <q-item-label>QRCode Generator</q-item-label>
+            <q-item-label>Generador Código QR</q-item-label>
             <q-item-label caption></q-item-label>
           </q-item-section>
         </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="school" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Docs Quasar</q-item-label>
-            <q-item-label caption>quasar.dev</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://github.quasar.dev">
-          <q-item-section avatar>
-            <q-icon name="code" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Github Quasar</q-item-label>
-            <q-item-label caption>github.com/quasarframework</q-item-label>
-          </q-item-section>
-        </q-item>
-        <q-item clickable tag="a" target="_blank" href="https://github.com/patrickmonteiro/quasar-qrcode-reader">
-          <q-item-section avatar>
-            <q-icon name="code" />
-          </q-item-section>
-          <q-item-section>
-            <q-item-label>Github Project</q-item-label>
-            <q-item-label caption>github.com/patrickmonteiro/quasar-qrcode-reader</q-item-label>
-          </q-item-section>
-        </q-item>
+
       </q-list>
     </q-drawer>
 

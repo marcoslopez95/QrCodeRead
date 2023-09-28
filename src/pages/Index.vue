@@ -17,11 +17,11 @@
         <span class="text-subtitle2 text-grey-9">
           {{ textInfo }}
         </span>
-        <q-btn color="blue-grey-10" rounded icon="camera_alt" label="Read QRCode"
+        <q-btn color="secondary" rounded icon="camera_alt" label="Leer Código QR"
           class="full-width" size="lg" @click="turnCameraOn()"
           v-show="!showCamera"/>
 
-          <p class="text-subtitle1" v-if="result">Last result: <b>{{ result }}</b></p>
+          <p class="text-subtitle1" v-if="result">Última lectura: <b>{{ result }}</b></p>
           <div v-if="showCamera">
             <qrcode-stream :camera="camera" @decode="onDecode">
             </qrcode-stream>
@@ -49,7 +49,7 @@ export default {
   },
   computed: {
     textInfo () {
-      return this.showCamera ? 'position the qrcode on the camera' : 'Press the button and scan a qrcode.'
+      return this.showCamera ? 'Posicione el código QR en la cámara' : 'Presione el botón y escaneé el código QR.'
     }
   },
   methods: {

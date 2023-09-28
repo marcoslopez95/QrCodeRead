@@ -3,11 +3,11 @@
     <div class="row justify-center">
       <div class="col-12 q-pt-lg text-center text-blue-grey-9">
         <span class="text-subtitle1">
-          Enter the String you want to insert into your custom QRCode.
+          Introduzca el texto para insertar en tu código
         </span>
       </div>
       <div class="col-10 q-pt-lg">
-        <q-input rounded outlined v-model="text" label="Value" />
+        <q-input rounded outlined v-model="text" label="Texto" />
       </div>
       <div class="col-12 q-pt-md text-center">
         <qriously :value="text" :size="230" />
@@ -15,7 +15,7 @@
       <q-btn
         color="blue-grey-10"
         outline
-        label="Donwload"
+        label="Descargar"
         @click="donwloadCanvas"
       />
     </div>
