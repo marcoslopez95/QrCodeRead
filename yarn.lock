@@ -3135,6 +3135,11 @@
   "resolved" "https://registry.npmjs.org/cyclist/-/cyclist-1.0.1.tgz"
   "version" "1.0.1"
 
+"dayjs@^1.11.10":
+  "integrity" "sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ=="
+  "resolved" "https://registry.npmjs.org/dayjs/-/dayjs-1.11.10.tgz"
+  "version" "1.11.10"
+
 "de-indent@^1.0.2":
   "integrity" "sha1-sgOOhG3DO6pXlhKNCAS0VbjB4h0="
   "resolved" "https://registry.npmjs.org/de-indent/-/de-indent-1.0.2.tgz"
