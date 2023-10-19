@@ -35,6 +35,8 @@
 </style>
 
 <script>
+import axios from 'axios'
+import { API } from './../constants'
 import { QrcodeStream } from 'vue-qrcode-reader'
 export default {
   name: 'PageIndex',
@@ -55,6 +57,17 @@ export default {
   methods: {
     async onDecode (content) {
       this.result = content
+      const ip = navigator.connection.getNetworkInformation()[0].ip
+      const mac = navigator.getNetworkInfo().macAddress
+      const data = {
+        ip: ip,
+        mac: mac,
+        time_id: this.result,
+        is_active: true,
+        fec_conection: new Date()
+      }
+      const url = API + 'conection'
+      await axios.post(url, { data })
       this.turnCameraOff()
     },
 

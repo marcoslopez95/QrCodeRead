@@ -129,7 +129,7 @@
 
         <q-card-section class="q-pt-none text-center">
           <div class="col-12 q-pt-md text-center">
-            <qriously :value="item.time.toString()" :size="230" />
+            <qriously :value="item.id.toString()" :size="230" />
           </div>
           <q-btn
             color="blue-grey-10"
