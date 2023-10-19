@@ -48,7 +48,15 @@
             <q-item-label caption></q-item-label>
           </q-item-section>
         </q-item>
-
+        <q-item clickable to="connections" exact>
+          <q-item-section avatar>
+            <q-icon name="fact_check" />
+          </q-item-section>
+          <q-item-section>
+            <q-item-label>Lista de Conexiones</q-item-label>
+            <q-item-label caption></q-item-label>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 

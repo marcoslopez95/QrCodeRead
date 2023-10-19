@@ -17,16 +17,10 @@
         </q-card-actions>
       </q-card>
     </q-dialog>
-    <div class="row justify-end q-mt-lg">
-      <div class="">
-        <q-btn @click="openCreateModal" color="primary" label="Crear" />
-      </div>
 
-    </div>
     <div class="row justify-center q-mt-lg">
       <q-table
-        wi
-        title="Tiempos"
+        title="Conexiones"
         :data="items"
         :columns="columns"
         row-key="name">
@@ -35,55 +29,34 @@
             <q-td key="id" :props="props">
               {{ props.row.id }}
             </q-td>
+            <q-td key="ip" :props="props">
+              {{ props.row.ip }}
+            </q-td>
+            <q-td key="mac" :props="props">
+              {{ props.row.mac }}
+            </q-td>
+            <q-td key="fec_conection" :props="props">
+              {{ props.row.fec_conection }}
+            </q-td>
             <q-td key="time" :props="props">
               <!-- <q-badge color="green"> -->
-                {{ props.row.time }}
+                {{ props.row.time_id }}
+              <!-- </q-badge> -->
+            </q-td>
+            <q-td key="is_active" :props="props">
+              <!-- <q-badge color="green"> -->
+                {{ props.row.is_active ? 'Activo' : 'Desconectado' }}
               <!-- </q-badge> -->
             </q-td>
             <q-td key="actions" :props="props">
-                <q-btn class="q-ml-xs" @click="edit(props.row)" color="info" round icon="edit" size="sm" />
-                <q-btn class="q-ml-xs" @click="showQrModal(props.row)" color="info" round icon="qr_code_2" size="sm" />
+                <!-- <q-btn class="q-ml-xs" @click="edit(props.row)" color="info" round icon="edit" size="sm" /> -->
+                <!-- <q-btn class="q-ml-xs" @click="showQrModal(props.row)" color="info" round icon="qr_code_2" size="sm" /> -->
                 <q-btn class="q-ml-xs" @click="deleteR(props.row)" color="red" round icon="delete" size="sm" />
             </q-td>
             </q-tr>
           </template>
       </q-table>
     </div>
-
-    <!-- Crear -->
-    <q-dialog v-if="createModal" v-model="createModal" persistent>
-      <q-card style="min-width: 350px">
-        <q-card-section>
-          <div class="text-h6">Crear Tiempo</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          <div class="col-12 q-pt-lg text-center text-blue-grey-9">
-            <span class="text-subtitle1">
-              Introduzca el Tiempo en minutos
-            </span>
-          </div>
-          <div class="col-10 q-pt-lg">
-            <q-input rounded outlined v-model="form.time" label="Tiempo" />
-          </div>
-          <!-- <div class="col-12 q-pt-md text-center">
-            <qriously :value="text" :size="230" />
-          </div> -->
-          <!-- <q-btn
-            color="blue-grey-10"
-            outline
-            label="Descargar"
-            @click="donwloadCanvas"
-          /> -->
-        </q-card-section>
-
-        <q-card-actions align="right" class="text-primary">
-          <q-btn flat label="Cancelar" v-close-popup @click="show =  false" />
-          <q-btn flat label="Guardar" v-close-popup @click="storeTime" />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
-    <!-- Fin de Crear -->
 
     <!-- Editar -->
     <q-dialog v-if="show" v-model="show" persistent>
@@ -154,7 +127,7 @@ import dayjs from 'dayjs'
 import axios from 'axios'
 import { API, TOKEN } from './../constants'
 export default {
-  name: 'Generator',
+  name: 'Connections',
   computed: {
     dateNow () {
       return dayjs().format('DD/MM/YYYY HH:mm:ss')
@@ -195,11 +168,47 @@ export default {
           sortable: true
         },
         {
+          name: 'ip',
+          required: true,
+          label: 'IP',
+          align: 'center',
+          field: row => row.ip,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
+          name: 'mac',
+          required: true,
+          label: 'MAC',
+          align: 'center',
+          field: row => row.mac,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
+          name: 'fec_conection',
+          required: true,
+          label: 'Fecha Conexión',
+          align: 'center',
+          field: row => row.fec_conection,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
           name: 'time',
           required: true,
-          label: 'Tiempo (min.)',
+          label: 'Tiempo',
           align: 'center',
-          field: row => row.time,
+          field: row => row.time_id,
+          format: val => `${val}`,
+          sortable: true
+        },
+        {
+          name: 'is_active',
+          required: true,
+          label: 'Status',
+          align: 'center',
+          field: row => row.is_active,
           format: val => `${val}`,
           sortable: true
         },
@@ -224,13 +233,9 @@ export default {
       }
     },
     async storeTime () {
-      const url = API + 'times'
+      const url = API + 'conection'
       const data = this.form
-      const headers = {
-        'accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-      await axios.post(url, data, { headers })
+      await axios.post(url, { data })
       this.form = ''
       this.getTimes()
     },
@@ -241,11 +246,11 @@ export default {
       this.show = true
     },
     async put () {
-      const url = API + 'times/' + this.item.id
+      const url = API + 'conection/' + this.item.id
       const data = {
         time: this.item.time
       }
-      await axios.put(url, data)
+      await axios.put(url, { data })
       this.item = ''
       this.getTimes()
     },
@@ -256,13 +261,13 @@ export default {
       this.showQr = true
     },
     async deleteR (element) {
-      const url = API + 'times/' + element.id
+      const url = API + 'conection/' + element.id
       console.log(url)
       await axios.delete(url)
       this.getTimes()
     },
     async getTimes () {
-      const url = API + 'times'
+      const url = API + 'conection'
       const res = await axios.get(url)
       this.items = res.data
     },
