@@ -243,7 +243,9 @@ export default {
     async put () {
       const url = API + 'times/' + this.item.id
       const data = {
-        time: this.item.time
+        time: this.form.time,
+        id: this.item.id,
+        init: this.item.init
       }
       await axios.put(url, data)
       this.item = ''
