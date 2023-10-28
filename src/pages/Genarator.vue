@@ -224,18 +224,20 @@ export default {
       }
     },
     async storeTime () {
-      const url = API + 'times'
+      const url = API + 'times/'
       const data = this.form
+      data.id = 0
+      data.init = new Date()
       const headers = {
         'accept': 'application/json',
         'Content-Type': 'application/json'
       }
       await axios.post(url, data, { headers })
-      this.form = ''
+      this.form = {}
       this.getTimes()
     },
     edit (element) {
-      // console.log(element)
+      console.log(element)
       this.item = element
       this.form.time = element.time
       this.show = true
@@ -248,7 +250,7 @@ export default {
         init: this.item.init
       }
       await axios.put(url, data)
-      this.item = ''
+      this.item = {}
       this.getTimes()
     },
     showQrModal (element) {

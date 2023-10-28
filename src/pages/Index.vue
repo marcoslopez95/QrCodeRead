@@ -56,18 +56,23 @@ export default {
   },
   methods: {
     async onDecode (content) {
-      this.result = content
-      const ip = navigator.connection.getNetworkInformation()[0].ip
-      const mac = navigator.getNetworkInfo().macAddress
+      // const ip = navigator.connection.getNetworkInformation()[0].ip
+      // const mac = navigator.getNetworkInfo().macAddress
       const data = {
-        ip: ip,
-        mac: mac,
-        time_id: this.result,
+        id: 0,
+        // ip: ip,
+        // mac: mac,
+        time_id: content,
         is_active: true,
         fec_conection: new Date()
       }
-      const url = API + 'conection'
-      await axios.post(url, { data })
+      const url = API + 'conection/'
+      try {
+        await axios.post(url, data)
+        this.result = 'Conectado exitosamente'
+      } catch (e) {
+        this.result = 'Ha ocurrido un problema al intentar conectar'
+      }
       this.turnCameraOff()
     },
 
