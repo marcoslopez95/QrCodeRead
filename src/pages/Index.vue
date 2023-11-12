@@ -56,12 +56,12 @@ export default {
   },
   methods: {
     async onDecode (content) {
-      // const ip = navigator.connection.getNetworkInformation()[0].ip
-      // const mac = navigator.getNetworkInfo().macAddress
+      const ip = ''
+      const mac = ''
       const data = {
         id: 0,
-        // ip: ip,
-        // mac: mac,
+        ip: ip,
+        mac: mac,
         time_id: content,
         is_active: true,
         fec_conection: new Date()
