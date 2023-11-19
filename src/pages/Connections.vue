@@ -135,13 +135,13 @@ export default {
   },
   mounted () {
     this.getTimes()
-    // this.tokenVencido()
+    this.tokenVencido()
     // eslint-disable-next-line space-in-parens
-    // this.interval = setInterval( () => {
-    //   if (this.tokenVencido()) {
-    //     this.$router.push('/')
-    //   }
-    // }, 50000)
+    this.interval = setInterval( () => {
+      if (this.tokenVencido()) {
+        this.$router.push('/')
+      }
+    }, 50000)
   },
   unmounted () {
     clearInterval(this.interval)
