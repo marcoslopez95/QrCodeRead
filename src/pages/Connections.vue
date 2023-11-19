@@ -255,14 +255,12 @@ export default {
       this.getTimes()
     },
     showQrModal (element) {
-      console.log(element)
       this.item = element
       // console.log(this.item.time)
       this.showQr = true
     },
     async deleteR (element) {
       const url = API + 'conection/' + element.id
-      console.log(url)
       await axios.delete(url)
       this.getTimes()
     },

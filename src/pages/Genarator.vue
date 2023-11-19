@@ -237,7 +237,6 @@ export default {
       this.getTimes()
     },
     edit (element) {
-      console.log(element)
       this.item = element
       this.form.time = element.time
       this.show = true
@@ -254,14 +253,14 @@ export default {
       this.getTimes()
     },
     showQrModal (element) {
-      console.log(element)
+      // console.log(element)
       this.item = element
       // console.log(this.item.time)
       this.showQr = true
     },
     async deleteR (element) {
       const url = API + 'times/' + element.id
-      console.log(url)
+      // console.log(url)
       await axios.delete(url)
       this.getTimes()
     },
